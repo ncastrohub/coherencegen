@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CSS Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.cdnfonts.com/css/steamflixsans" rel="stylesheet">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/steamflixsans');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SteamflixSansBold', sans-serif;
+        }
+
+        .mainElement {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            line-height: 0.8;
+        }
+
+        .textoGrande {
+            flex: 3;
+            font-size: 65px;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+        }
+
+        .conclusion {
+            flex: 2;
+            font-size: 30px;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+        }
+
+        .coherencia {
+            flex: 1;
+            font-size: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Container for flexboxes */
+        .row {
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        /* Create three equal columns that sits next to each other */
+        .column {
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            padding: 30px;
+            min-width: 300px;
+            /* Should be removed. Only for demonstration */
+        }
+
+        /* Style the footer */
+        .footer {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <h2>Generador de Coherencias por favor</h2>
+    <p>Pone el primer texto, pone el segundo y apreta generar y a disfrutar de la coherencia</p>
+
+    <div class="header">
+        <h2></h2>
+    </div>
+
+    <div class="row">
+        <div class="column"></div>
+        <div id="coherencia-box" class="column mainElement" style="background-color:#bbb;">
+
+            <div class="divsContainer">
+                <div class="textoGrande" id="text-grande-container">
+                    Texto grande
+                </div>
+
+                <div class="conclusion" id="conclusion-container">
+                    conclusion ( sino vaciar)
+                </div>
+
+                <div class="coherencia">
+                    Coherencia por favor.
+
+                </div>
+            </div>
+        </div>
+        <div class="column"></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="column"></div>
+        <div class="column">
+            <div style="background-color:#fff;"></div>
+            <form id="make-coherencia">
+                <label for="textoGrande">Texto Grande</label><br>
+                <input id="texto-grande-input" type="text" name="textoGrande">
+                <br>
+                <br>
+                <label for="conclusion">Conclusion</label><br>
+                <input id="conclusion-input" type="text" name="conclusion">
+
+                <button type="submit">Generar</button>
+
+            </form>
+            <br>
+            <button id="download"> Dowload</button>
+        </div>
+        <div class="column"></div>
+    </div>
+
+    <div class="footer">
+    </div>
+
+</body>
+
+<script>
+
+
+    function randomColor() {
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+
+        function onFormSubmit(event) {
+            event.preventDefault();
+            const data = new FormData(event.target);
+            const dataObject = Object.fromEntries(data.entries());
+
+            document.getElementById("text-grande-container").textContent = dataObject.textoGrande
+            document.getElementById("conclusion-container").textContent = dataObject.conclusion
+
+            console.log(randomColor)
+            document.getElementById("coherencia-box").style.background = randomColor();
+
+            document.getElementById("text-grande-container").style.color = randomColor();
+            document.getElementById("conclusion-container").style.color = randomColor();
+
+            console.log(dataObject);
+        }
+
+        function dowloadImage() {
+            console.log("entro")
+            let container = document.getElementById("coherencia-box");
+            html2canvas(container, { allowTaint: true }).then(function (canvas) {
+
+                var link = document.createElement("a");
+                document.body.appendChild(link);
+                link.download = "html_image.jpg";
+                link.href = canvas.toDataURL();
+                link.target = '_blank';
+                link.click();
+            });
+        }
+
+        document.getElementById('make-coherencia').addEventListener("submit", onFormSubmit);
+
+        document.getElementById('download').addEventListener("click", dowloadImage);
+    });
+
+</script>
+
+</html>

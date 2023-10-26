@@ -5,17 +5,20 @@
     <title>CSS Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.cdnfonts.com/css/steamflixsans" rel="stylesheet">
+    <link href="https://db.onlinewebfonts.com/c/c8a508ce93b258fee22ef2e94bfbaa83?family=Hero+New+SemiBold"
+        rel="stylesheet">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
     <style>
-        @import url('https://fonts.cdnfonts.com/css/steamflixsans');
+        @import url(https://db.onlinewebfonts.com/c/c8a508ce93b258fee22ef2e94bfbaa83?family=Hero+New+SemiBold);
 
         * {
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'SteamflixSansBold', sans-serif;
+            font-family: "Hero New SemiBold";
         }
 
         .mainElement {
@@ -23,19 +26,19 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            line-height: 0.8;
+            line-height: 1;
         }
 
         .textoGrande {
             flex: 3;
-            font-size: 50px;
+            font-size: 40px;
             word-wrap: break-word;
             margin-bottom: 20px;
         }
 
         .conclusion {
             flex: 2;
-            font-size: 30px;
+            font-size: 25px;
             word-wrap: break-word;
             margin-bottom: 20px;
         }
@@ -68,12 +71,9 @@
             text-align: center;
         }
     </style>
-
-
 </head>
 
 <body>
-
     <h2>Generador de Coherencias por favor</h2>
     <p>Pone el primer texto, pone el segundo y apreta generar y a disfrutar de la coherencia</p>
 
@@ -112,14 +112,26 @@
                 <input id="texto-grande-input" type="text" name="textoGrande">
                 <br>
                 <br>
+                <label for="textoGrandeColor">Color</label>
+                <input name="textoGrandeColor" type="text" data-coloris>
+                <br>
+                <br>
                 <label for="conclusion">Conclusion</label><br>
                 <input id="conclusion-input" type="text" name="conclusion">
-
+                <br>
+                <br>
+                <label for="conclusionColor">Color</label>
+                <input name="conclusionColor" type="text" data-coloris>
+                <br>
+                <br>
+                <label for="backgroundColor">Backgroun Color</label>
+                <input name="backgroundColor" type="text" data-coloris>
+                <br>
+                <br>
                 <button type="submit">Generar</button>
-
             </form>
             <br>
-            <button id="download"> Dowload</button>
+            <button id="download">Dowload</button>
         </div>
         <div class="column"></div>
     </div>
@@ -138,7 +150,6 @@
 
     document.addEventListener("DOMContentLoaded", function () {
 
-
         function onFormSubmit(event) {
             event.preventDefault();
             const data = new FormData(event.target);
@@ -148,19 +159,17 @@
             document.getElementById("conclusion-container").textContent = dataObject.conclusion
 
             console.log(randomColor)
-            document.getElementById("coherencia-box").style.background = randomColor();
+            document.getElementById("coherencia-box").style.background = dataObject.backgroundColor;
 
-            document.getElementById("text-grande-container").style.color = randomColor();
-            document.getElementById("conclusion-container").style.color = randomColor();
+            document.getElementById("text-grande-container").style.color = dataObject.textoGrandeColor;
+            document.getElementById("conclusion-container").style.color = dataObject.conclusionColor;
 
             console.log(dataObject);
         }
 
         function dowloadImage() {
-            console.log("entro")
             let container = document.getElementById("coherencia-box");
             html2canvas(container, { allowTaint: true }).then(function (canvas) {
-
                 var link = document.createElement("a");
                 document.body.appendChild(link);
                 link.download = "html_image.jpg";

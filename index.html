@@ -27,48 +27,39 @@
             flex-direction: column;
             justify-content: flex-end;
             line-height: 1;
+            padding: 25px;
         }
 
         .textoGrande {
             flex: 3;
-            font-size: 40px;
+            font-size: 30px;
             word-wrap: break-word;
             margin-bottom: 20px;
         }
 
         .conclusion {
             flex: 2;
-            font-size: 25px;
+            font-size: 20px;
             word-wrap: break-word;
             margin-bottom: 20px;
         }
 
         .coherencia {
             flex: 1;
-            font-size: 15px;
+            font-size: 10px;
             margin-bottom: 20px;
         }
 
-        /* Container for flexboxes */
         .row {
             display: -webkit-flex;
             display: flex;
         }
 
-        /* Create three equal columns that sits next to each other */
         .column {
             -webkit-flex: 1;
             -ms-flex: 1;
             flex: 1;
-            padding: 35px;
-            min-width: 300px;
-            /* Should be removed. Only for demonstration */
-        }
-
-        /* Style the footer */
-        .footer {
-            padding: 20px;
-            text-align: center;
+            max-width: 400px;
         }
     </style>
 </head>
@@ -101,39 +92,31 @@
             </div>
         </div>
         <div class="column"></div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="column"></div>
         <div class="column">
-            <div style="background-color:#fff;"></div>
             <form id="make-coherencia">
-                <label for="textoGrande">Texto Grande</label><br>
+                <label for="textoGrande">Texto Grande</label>
                 <input id="texto-grande-input" type="text" name="textoGrande">
-                <br>
                 <br>
                 <label for="textoGrandeColor">Color</label>
                 <input name="textoGrandeColor" type="text" data-coloris>
                 <br>
-                <br>
-                <label for="conclusion">Conclusion</label><br>
+                <label for="conclusion">Conclusion</label>
                 <input id="conclusion-input" type="text" name="conclusion">
-                <br>
                 <br>
                 <label for="conclusionColor">Color</label>
                 <input name="conclusionColor" type="text" data-coloris>
                 <br>
-                <br>
                 <label for="backgroundColor">Backgroun Color</label>
                 <input name="backgroundColor" type="text" data-coloris>
                 <br>
-                <br>
                 <button type="submit">Generar</button>
+                <button id="download">Dowload</button>
             </form>
-            <br>
-            <button id="download">Dowload</button>
         </div>
+
         <div class="column"></div>
+        <br>
+    </div>
     </div>
 
     <div class="footer">
